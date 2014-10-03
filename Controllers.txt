@@ -1,0 +1,26 @@
+public ActionResult NAME(Model model, string command)
+{
+	if (command == "exit")
+	{
+		string result = Session["answer"].ToString();
+
+		if(result == "true")
+		{
+			//Do Whatever
+		}
+		
+		else if(result == "false")
+		{
+			//Do Whatever
+		}
+
+		return RedirectToAction("View", "Controller");
+	}
+}
+
+public ActionResult SetVariable(string key, string value)
+{
+	Session[key] = value;
+
+	return this.Json(new { success = true });
+}

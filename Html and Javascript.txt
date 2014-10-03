@@ -1,0 +1,35 @@
+HTML
+
+<button class="btn-xs" id="yesNoConfirm">Exit</button>
+<button class="btn" name="command" value="exit" id="command" style="visibility:hidden"></button>
+
+
+JAVASCRIPT
+
+<script type="text/javascript">
+
+	$("#yesNoConfirm").confirm(
+	{
+		text: "Question?",
+		confirm: function (button)
+		{
+			$(function ()
+			{
+				$.post('SetVariable',
+					   { key: "answer", value: 'true' }, function (data) {
+						   document.getElementById('command').click();
+					   });
+			});
+		},
+		cancel: function (button)
+		{
+			$.post('SetVariable',
+					   { key: "answer", value: 'false' }, function (data) {
+						   document.getElementById('command').click();
+					   });
+		},
+		confirmButton: "Yes",
+		cancelButton: "No"
+	});
+
+</script>
